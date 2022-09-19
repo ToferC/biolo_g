@@ -1,5 +1,5 @@
 pub mod person;
-pub mod heart;
+pub mod circulatory;
 
 use person::*;
-use heart::*;
+use circulatory::*;

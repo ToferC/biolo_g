@@ -3,7 +3,7 @@ use bevy::prelude::*;
 pub mod components;
 pub mod systems;
 
-use components::heart::Heart;
+use components::circulatory::Heart;
 
 #[derive(Default)]
 struct PlayerState;
@@ -12,6 +12,8 @@ pub struct WinSize {
     pub w: f32,
     pub h: f32,
 }
+
+const HEART_RADIUS: f32 = 0.5;
 
 const BOARD_SIZE_I: usize = 14;
 const BOARD_SIZE_J: usize = 21;
@@ -38,7 +40,7 @@ pub fn setup_system(
     // heart
     commands.spawn_bundle(PbrBundle {
         mesh: meshes.add(Mesh::from(shape::Icosphere::from(shape::Icosphere {
-            radius: 0.75,
+            radius: HEART_RADIUS,
             ..Default::default()
         }))),
         material: materials.add(Color::rgb(1., 0.0, 0.0).into()),
