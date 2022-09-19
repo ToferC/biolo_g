@@ -1,5 +1,7 @@
 use bevy::prelude::*;
 
+use crate::GameElements;
+
 const HEART_SIZE_LIMITS: (f32, f32) = (0.5, 1.); // Min / Max scale
 
 #[derive(Component)]
@@ -20,12 +22,10 @@ impl Heart {
 pub fn heart_animation(
     time: Res<Time>,
     mut query: Query<(&mut Heart, &mut Transform)>,
-    asset_server: Res<AssetServer>,
+    game_elements: Res<GameElements>,
     audio: Res<Audio>,
     keyboard: Res<Input<KeyCode>>,
 ) {
-
-    let heart_beat = asset_server.load("sounds/heartbeat.mp3_.ogg");
 
     for (mut heart, mut transform) in &mut query.iter_mut() {
 
@@ -40,7 +40,7 @@ pub fn heart_animation(
             if transform.scale.x > HEART_SIZE_LIMITS.1 {
                 false
             } else if transform.scale.x < HEART_SIZE_LIMITS.0 {
-                audio.play(heart_beat.clone());
+                audio.play(game_elements.heart_sound.clone());
                 true
             } else {
                 heart.expansion

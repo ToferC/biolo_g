@@ -14,6 +14,12 @@ pub struct WinSize {
     pub h: f32,
 }
 
+pub struct GameElements {
+    pub heart_sound: Handle<AudioSource>,
+    pub inhale_sound: Handle<AudioSource>,
+    pub exhale_sound: Handle<AudioSource>,
+}
+
 const HEART_RADIUS: f32 = 0.5;
 
 const BOARD_SIZE_I: usize = 14;
@@ -35,8 +41,17 @@ pub fn setup_system(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    asset_server: Res<AssetServer>,
     // mut windows: ResMut<Windows>,
 ) {
+
+    let game_elements = GameElements {
+        heart_sound: asset_server.load("sounds/heart.ogg"),
+        inhale_sound: asset_server.load("sounds/inhale.ogg"),
+        exhale_sound: asset_server.load("sounds/exhale.ogg")
+    };
+
+    commands.insert_resource(game_elements);
 
     // heart
     commands.spawn_bundle(PbrBundle {

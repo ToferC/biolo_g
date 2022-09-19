@@ -1,5 +1,7 @@
 use bevy::prelude::*;
 
+use crate::GameElements;
+
 const LUNGS_SIZE: (f32, f32) = (0.5, 1.);
 
 #[derive(Component)]
@@ -20,13 +22,10 @@ impl Lungs {
 pub fn breathe_system(
     time: Res<Time>,
     mut query: Query<(&mut Lungs, &mut Transform)>,
-    asset_server: Res<AssetServer>,
+    game_elements: Res<GameElements>,
     audio: Res<Audio>,
     keyboard: Res<Input<KeyCode>>,
 ) {
-    let inhale = asset_server.load("sounds/inhale.ogg");
-    let exhale = asset_server.load("sounds/exhale.ogg");
-
     for (mut lungs, mut transform) in &mut query.iter_mut() {
         
         if keyboard.just_pressed(KeyCode::Right) {
@@ -37,11 +36,11 @@ pub fn breathe_system(
         
         lungs.expansion = match transform.scale.x {
             x if x > LUNGS_SIZE.1 => {
-                audio.play(exhale.clone());
+                audio.play(game_elements.exhale_sound.clone());
                 false
             },
             x if x < LUNGS_SIZE.0 => {
-                audio.play(inhale.clone());
+                audio.play(game_elements.inhale_sound.clone());
                 true
             },
             _ => lungs.expansion
