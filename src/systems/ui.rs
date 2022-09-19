@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::components::{circulatory::Heart, respiratory::Lungs};
+use crate::components::human::{cardiovascular::Heart, respiratory::Lungs};
 
 #[derive(Component)]
 pub struct HeartText;

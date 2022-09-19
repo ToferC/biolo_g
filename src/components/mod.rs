@@ -1,7 +1,3 @@
-pub mod person;
-pub mod circulatory;
-pub mod respiratory;
+pub mod human;
 
-use person::*;
-use circulatory::*;
-use respiratory::*;
+use human::*;

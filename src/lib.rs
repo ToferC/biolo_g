@@ -3,8 +3,8 @@ use bevy::prelude::*;
 pub mod components;
 pub mod systems;
 
-use components::circulatory::Heart;
-use components::respiratory::Lungs;
+use components::human::cardiovascular::Heart;
+use components::human::respiratory::Lungs;
 
 #[derive(Default)]
 struct PlayerState;

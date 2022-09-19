@@ -3,8 +3,8 @@ use bevy::time::FixedTimestep;
 use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 
 use biolo_g::{Game, setup_system, setup_cameras};
-use biolo_g::components::circulatory::heart_animation;
-use biolo_g::components::respiratory::breathe_system;
+use biolo_g::components::human::cardiovascular::heart_animation;
+use biolo_g::components::human::respiratory::breathe_system;
 use biolo_g::systems::ui::{ui_text_system, heart_text_update, breath_text_update};
 
 fn main() {

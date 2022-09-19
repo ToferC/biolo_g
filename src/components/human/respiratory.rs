@@ -7,7 +7,9 @@ const LUNGS_SIZE: (f32, f32) = (0.5, 1.);
 #[derive(Component)]
 pub struct Lungs {
     pub expansion: bool,
-    pub rate: f32, 
+    pub rate: f32,
+    pub energy_cost: f32,
+    pub efficency: f32,
 }
 
 impl Lungs {
@@ -15,6 +17,8 @@ impl Lungs {
         Lungs {
             expansion: true,
             rate: 0.75,
+            energy_cost: 0.01,
+            efficency: 1.0,
         }
     }
 }

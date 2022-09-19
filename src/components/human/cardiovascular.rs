@@ -8,6 +8,8 @@ const HEART_SIZE_LIMITS: (f32, f32) = (0.5, 1.); // Min / Max scale
 pub struct Heart {
     pub rate: f32,
     pub expansion: bool,
+    pub energy_cost: f32,
+    pub efficency: f32,
 }
 
 impl Heart {
@@ -15,6 +17,8 @@ impl Heart {
         Heart {
             rate: 1.,
             expansion: true,
+            energy_cost: 0.01,
+            efficency: 1.0,
         }
     }
 }
