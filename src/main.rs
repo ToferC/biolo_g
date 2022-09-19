@@ -4,7 +4,8 @@ use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 
 use biolo_g::{Game, setup_system, setup_cameras};
 use biolo_g::components::circulatory::heart_animation;
-use biolo_g::systems::ui::{ui_text_system, text_update_system};
+use biolo_g::components::respiratory::breathe_system;
+use biolo_g::systems::ui::{ui_text_system, heart_text_update, breath_text_update};
 
 fn main() {
     App::new()
@@ -22,10 +23,15 @@ fn main() {
         .add_startup_system(setup_system)
         .add_startup_system(setup_cameras)
         .add_system(heart_animation)
+        .add_system(breathe_system)
         .add_system(ui_text_system)
         .add_system_set(SystemSet::new()
             .with_run_criteria(FixedTimestep::step(0.5))
-            .with_system(text_update_system)
+            .with_system(heart_text_update)
+        )
+        .add_system_set(SystemSet::new()
+            .with_run_criteria(FixedTimestep::step(0.5))
+            .with_system(breath_text_update)
         )
         .run();
 }

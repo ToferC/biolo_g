@@ -4,6 +4,7 @@ pub mod components;
 pub mod systems;
 
 use components::circulatory::Heart;
+use components::respiratory::Lungs;
 
 #[derive(Default)]
 struct PlayerState;
@@ -48,6 +49,18 @@ pub fn setup_system(
         ..Default::default()
     })
     .insert(Heart::default());
+
+    // lungs
+    commands.spawn_bundle(PbrBundle {
+        mesh: meshes.add(Mesh::from(shape::Torus::from(shape::Torus {
+            radius: 0.75,
+            ..Default::default()
+        }))),
+        material: materials.add(Color::rgb(0., 0.25, 0.95).into()),
+        transform: Transform::from_xyz(-2., 0., 0.),
+        ..Default::default()
+    })
+    .insert(Lungs::default());
 
     // light
     commands.spawn_bundle(PointLightBundle {
