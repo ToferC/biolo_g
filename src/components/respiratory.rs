@@ -24,7 +24,8 @@ pub fn breathe_system(
     audio: Res<Audio>,
     keyboard: Res<Input<KeyCode>>,
 ) {
-    let breathing = asset_server.load("sounds/breathe.ogg");
+    let inhale = asset_server.load("sounds/inhale.ogg");
+    let exhale = asset_server.load("sounds/exhale.ogg");
 
     for (mut lungs, mut transform) in &mut query.iter_mut() {
         
@@ -35,9 +36,12 @@ pub fn breathe_system(
         }
         
         lungs.expansion = match transform.scale.x {
-            x if x > LUNGS_SIZE.1 => false,
+            x if x > LUNGS_SIZE.1 => {
+                audio.play(exhale.clone());
+                false
+            },
             x if x < LUNGS_SIZE.0 => {
-                audio.play(breathing.clone());
+                audio.play(inhale.clone());
                 true
             },
             _ => lungs.expansion

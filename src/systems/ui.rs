@@ -34,8 +34,8 @@ pub fn ui_text_system(
             position_type: PositionType::Absolute,
             position: UiRect {
                 left: Val::Px(100.0),
-                top: Val::Px(500.0),
-                bottom: Val::Px(250.0),
+                top: Val::Px(200.0),
+                bottom: Val::Px(100.0),
                 right: Val::Px(15.0),
                 ..Default::default()
             },
@@ -66,8 +66,8 @@ pub fn ui_text_system(
             position_type: PositionType::Absolute,
             position: UiRect {
                 left: Val::Px(100.0),
-                top: Val::Px(400.0),
-                bottom: Val::Px(200.0),
+                top: Val::Px(200.0),
+                bottom: Val::Px(150.0),
                 right: Val::Px(15.0),
                 ..Default::default()
             },
